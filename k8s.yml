@@ -1,0 +1,4 @@
+- hosts: k8s
+  roles:
+    - k8sbase
+    - { role: k8scluster ,  when: control_node is defined and control_node }

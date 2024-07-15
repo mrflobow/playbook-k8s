@@ -1,0 +1,26 @@
+- name: Init cluster
+  ansible.builtin.shell: 
+    sudo kubeadm config images pull --cri-socket /run/containerd/containerd.sock &&
+    sudo kubeadm init --pod-network-cidr {{ network_cidr }} --kubernetes-version {{ kubernetes_version }} ; \
+    sudo touch /etc/ansible_k8s_cluster_init
+  args:
+    creates: /etc/ansible_k8s_cluster_init
+  become: true
+
+
+- name: "Create k8s directory for {{ k8s_mgmt_user }}"
+  file:
+    path: "{{ k8s_mgmt_user_home }}/.kube"
+    state: directory
+    owner: "{{ k8s_mgmt_user }}"
+    group: "{{ k8s_mgmt_user }}"
+  become: true
+
+- name: "Copy k8s admin config to {{ k8s_mgmt_user }}"
+  ansible.builtin.copy:
+    src: /etc/kubernetes/admin.conf 
+    dest: "{{ k8s_mgmt_user_home }}/.kube/config"
+    remote_src: true
+    owner: "{{ k8s_mgmt_user }}"
+    group: "{{ k8s_mgmt_user }}"
+  become: true

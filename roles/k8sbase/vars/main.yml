@@ -1,0 +1,8 @@
+kernel_modules:
+  - overlay
+  - br_netfilter
+
+k8s_tools:
+  - kubelet
+  - kubeadm
+  - kubectl
