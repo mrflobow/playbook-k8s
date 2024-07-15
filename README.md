@@ -2,9 +2,20 @@
 Ansible Playbook for setting up K8s Cluster
 
 ## Requirements
-* Tested with Ansible 10
+* Ansible 10
+* Debian 12 (tested , others may work)
 
 ## Manual steps
+
+Proceed with the manual steps after ansible playbook completed successfully.
+
+### Check
+
+Check if everything is working on control node.
+
+```bash
+kubectl get node
+````
 
 ### Control Node install network plugin
 ```bash

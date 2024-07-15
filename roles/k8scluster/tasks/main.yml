@@ -1,6 +1,5 @@
 - name: Init cluster
   ansible.builtin.shell: 
-    sudo kubeadm config images pull --cri-socket /run/containerd/containerd.sock &&
     sudo kubeadm init --pod-network-cidr {{ network_cidr }} --kubernetes-version {{ kubernetes_version }} ; \
     sudo touch /etc/ansible_k8s_cluster_init
   args:

@@ -71,7 +71,7 @@
 
 - name: Add K8S GPG Key
   ansible.builtin.shell:
-    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.27/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
   args: 
     creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
   register: keyring_added
@@ -90,5 +90,12 @@
 - name: Install k8s modules
   ansible.builtin.apt:
     name: "{{ item }}"
+  with_items: "{{ k8s_tools }}"
+  become: true
+
+- name: Hold kubeadm
+  ansible.builtin.dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
   with_items: "{{ k8s_tools }}"
   become: true
