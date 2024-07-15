@@ -1,6 +1,6 @@
 - name: Init cluster
   ansible.builtin.shell: 
-    sudo kubeadm init --pod-network-cidr {{ network_cidr }} --kubernetes-version {{ kubernetes_version }} ; \
+    sudo kubeadm init --control-plane-endpoint={{ ansible_facts['nodename'] }} ; \
     sudo touch /etc/ansible_k8s_cluster_init
   args:
     creates: /etc/ansible_k8s_cluster_init

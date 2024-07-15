@@ -36,7 +36,8 @@
 
 - name: Create default config
   ansible.builtin.shell:
-    sudo containerd config default | sudo tee /etc/containerd/config.toml
+    sudo containerd config default | sudo tee /etc/containerd/config.toml && \
+    sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
   when: containerd_installed.changed
 
 - name: Restart containerd

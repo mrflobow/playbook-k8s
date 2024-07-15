@@ -5,6 +5,10 @@ Ansible Playbook for setting up K8s Cluster
 * Ansible 10
 * Debian 12 (tested , others may work)
 
+## Nodenames
+
+Name the nodes with fqdn names. See sample-nodes example file.
+
 ## Manual steps
 
 Proceed with the manual steps after ansible playbook completed successfully.
@@ -14,12 +18,12 @@ Proceed with the manual steps after ansible playbook completed successfully.
 Check if everything is working on control node.
 
 ```bash
-kubectl get node
+kubectl get nodes
 ````
 
 ### Control Node install network plugin
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/calico.yaml
 ```
 
 ### Join Worker Nodes

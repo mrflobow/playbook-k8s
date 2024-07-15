@@ -1,4 +1,2 @@
-network_cidr: 192.168.0.0/16 
-kubernetes_version: 1.30.2
 k8s_mgmt_user: mrflobow
 k8s_mgmt_user_home: "/home/{{k8s_mgmt_user}}"

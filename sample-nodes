@@ -2,6 +2,6 @@
 ansible_user = ansible
 
 [k8s]
-k8-control control_node=true
-k8-node01
-k8-node02
+k8-control.mydomain.com control_node=true
+k8-node01.mydomain.com
+k8-node02.mydomain.com
