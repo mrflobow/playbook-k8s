@@ -94,7 +94,7 @@
   with_items: "{{ k8s_tools }}"
   become: true
 
-- name: Hold kubeadm
+- name: Avoid update of k8s modules
   ansible.builtin.dpkg_selections:
     name: "{{ item }}"
     selection: hold
