@@ -13,7 +13,14 @@ Name the nodes with fqdn names. See sample-nodes example file.
 
 ```bash
 sudo hostnamectl set-hostname k8s-control.mydomain.com
-````
+```
+
+## Configuration Variable Overrides
+
+| Name | Default Value | Description |
+| --- | --- | --- |
+| k8s_mgmt_user | mrflobow | User on control node , you use to run command kubectl |
+
 
 ## Manual steps
 
